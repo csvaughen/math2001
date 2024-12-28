@@ -50,4 +50,3 @@ example {a b c d e f : ℤ} (h1 : a * d = b * c) (h2 : c * f = d * e) :
   _ = b*(c*f) - d*b*e := by ring
   _ = b*(d*e) - d*b*e := by rw[h2]
   _ = 0 := by ring
-  
