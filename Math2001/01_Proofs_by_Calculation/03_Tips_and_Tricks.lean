@@ -25,9 +25,15 @@ _ = 11 := by ring
 -- Example 1.3.2
 example {x : ℤ} (h1 : x + 4 = 2) : x = -2 :=
   calc
+  x = (x + 4) - 4 := by ring
+  _ = 2 - 4 := by rw[h1]
+  _ = -2  := by ring
+
+-- by the way, accidentally found this also works...
+-- Example 1.3.2
+example {x : ℤ} (h1 : x + 4 = 2) : x = -2 :=
+  calc
   x = -2 := by addarith[h1]
-
-
 
 -- Example 1.3.3
 
@@ -40,11 +46,15 @@ example {a b : ℝ} (h1 : a - 5 * b = 4) (h2 : b + 2 = 3) : a = 9 :=
     _ = 9 := by ring
 
 
-
 -- Example 1.3.4
 example {w : ℚ} (h1 : 3 * w + 1 = 4) : w = 1 :=
-  sorry
+calc
+  w = (1/3)*(3*w + 1) - (1/3) := by ring
+  _ = (1/3)*4 - 1/3 := by rw[h1]
+  _ = 4/3 - 1/3 := by ring
+  _ = 1 := by ring
 
+  
 -- Example 1.3.5
 example {x : ℤ} (h1 : 2 * x + 3 = x) : x = -3 :=
   sorry
