@@ -10,10 +10,10 @@ Exercise: choose some of these examples and type out the whole proofs printed in
 proofs. -/
 
 example : 2+2 = 4 :=
-by numbers
+by ring
 
 example : 2^3 = 8 :=
-by numbers
+by ring
 
 -- Example 1.3.1
 example {a b : ℤ} (h1 : a = 2 * b + 5) (h2 : b = 3) : a = 11 :=
@@ -29,7 +29,10 @@ example {x : ℤ} (h1 : x + 4 = 2) : x = -2 :=
   _ = 2 - 4 := by rw[h1]
   _ = -2  := by ring
 
--- by the way, accidentally found this also works...
+/- by the way, accidentally found the following also works
+   (we aren't supposed to know the tatic "addarith" yet)
+-/
+
 -- Example 1.3.2
 example {x : ℤ} (h1 : x + 4 = 2) : x = -2 :=
   calc
@@ -54,18 +57,33 @@ calc
   _ = 4/3 - 1/3 := by ring
   _ = 1 := by ring
 
-  
+
 -- Example 1.3.5
 example {x : ℤ} (h1 : 2 * x + 3 = x) : x = -3 :=
-  sorry
+  calc
+  x = 2*x + 3 - x - 3 := by ring
+  _ = x - x - 3 := by rw [h1]
+  _ = 0 - 3 := by ring
+  _ = -3 := by ring
 
 -- Example 1.3.6
 example {x y : ℤ} (h1 : 2 * x - y = 4) (h2 : y - x + 1 = 2) : x = 5 :=
-  sorry
+  calc
+  x = 2*x - y - x + y := by ring
+  _ = 4 - x + y := by rw [h1]
+  _ = 4 + y - x := by ring
+  _ = 4 + (y - x + 1) - 1 := by ring
+  _ = 4 + 2 - 1 := by rw [h2]
+  _ = 5 := by ring
+
 
 -- Example 1.3.7
 example {u v : ℚ} (h1 : u + 2 * v = 4) (h2 : u - 2 * v = 6) : u = 5 :=
-  sorry
+  calc
+  u = (1/2)*((u + 2*v) + (u - 2*v)) := by ring
+  _ = (1/2)*(4 + 6) := by rw [h1, h2]
+  _ = (1/2)*10 := by ring
+  _ = 5 := by ring
 
 -- Example 1.3.8
 example {x y : ℝ} (h1 : x + y = 4) (h2 : 5 * x - 3 * y = 4) : x = 2 :=
