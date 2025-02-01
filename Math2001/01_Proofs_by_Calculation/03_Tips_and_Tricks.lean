@@ -21,12 +21,17 @@ end compute
 
 
 -- Example 1.3.1
-example {a b : ℤ} (h1 : a = 2 * b + 5) (h2 : b = 3) : a = 11 :=
+example {a b : ℤ} (h1 : a = 2 * b + 5) (h2 : b = 3) :
+a = 11 := by
  calc
    a = 2 * b + 5 := h1
    _ = 2 * 3 + 5 := by rw [h2]
    _ = 11 := by ring
-  
+ done
+
+/- note how in the above example we can use the "by calc... done" form
+whereas in following examples we just use "calc"
+-/
 
 -- Example 1.3.2
 example {x : ℤ} (h1 : x + 4 = 2) : x = -2 :=
