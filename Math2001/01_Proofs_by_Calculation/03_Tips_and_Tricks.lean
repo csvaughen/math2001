@@ -15,12 +15,18 @@ by ring
 example : 2^3 = 8 :=
 by ring
 
+section compute
+#eval 2^5
+end compute
+
+
 -- Example 1.3.1
 example {a b : ℤ} (h1 : a = 2 * b + 5) (h2 : b = 3) : a = 11 :=
  calc
- a = 2 * b + 5 := h1
-_ = 2 * 3 + 5 := by rw [h2]
-_ = 11 := by ring
+   a = 2 * b + 5 := h1
+   _ = 2 * 3 + 5 := by rw [h2]
+   _ = 11 := by ring
+  
 
 -- Example 1.3.2
 example {x : ℤ} (h1 : x + 4 = 2) : x = -2 :=
@@ -120,7 +126,11 @@ up in Lean. -/
 
 
 example {x y : ℝ} (h1 : x = 3) (h2 : y = 4 * x - 3) : y = 9 :=
-  sorry
+  calc
+   y = 4*x-3 := by rw [h2]
+   _ = 4*3 - 3 := by rw [h1]
+   _ = 9 := by ring
+
 
 example {a b : ℤ} (h : a - b = 0) : a = b :=
   sorry
