@@ -171,8 +171,13 @@ example {x y : ℤ} (h1 : 2 * x + y = 4) (h2 : x + y = 1) : x = 3 :=
 example {a b : ℝ} (h1 : a + 2 * b = 4) (h2 : a - b = 1) : a = 2 :=
   sorry
 
-example {u v : ℝ} (h1 : u + 1 = v) : u ^ 2 + 3 * u + 1 = v ^ 2 + v - 1 :=
-  sorry
+example {u v : ℝ} (h1 : u + 1 = v) : u ^ 2 + 3 * u + 1 = v ^ 2 + v - 1 := by
+  calc
+    u^2 + 3*u + 1 = (u+1)*(u+2) - 1 := by ring
+    _ = (u + 1)*(u + 1 + 1) -1 := by ring
+    _ = (v)*(v+1) - 1 := by rw[h1]
+    _ = v^2 + v - 1 := by ring
+    
 
 example {t : ℚ} (ht : t ^ 2 - 4 = 0) :
     t ^ 4 + 3 * t ^ 3 - 3 * t ^ 2 - 2 * t - 2 = 10 * t + 2 :=
