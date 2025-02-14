@@ -185,11 +185,16 @@ example {t : ℚ} (ht : t ^ 2 - 4 = 0) :
     t ^ 4 + 3 * t ^ 3 - 3 * t ^ 2 - 2 * t - 2 = (t^2-4)*(t^2+3*t+1) + 10*t+2 := by ring
      _ = (0)*(t^2+3*t+1) + 10*t+2 := by rw[ht]
      _ =10*t+2 := by ring
-     
+
 
 example {x y : ℝ} (h1 : x + 3 = 5) (h2 : 2 * x - y * x = 0) : y = 2 :=
   sorry
 
 example {p q r : ℚ} (h1 : p + q + r = 0) (h2 : p * q + p * r + q * r = 2) :
-    p ^ 2 + q ^ 2 + r ^ 2 = -4 :=
-  sorry
+    p ^ 2 + q ^ 2 + r ^ 2 = -4 := by
+  calc
+    p^2 + q^2 + r^2 = (p+q+r)^2 - 2*(p*q + p*r + q*r) := by ring
+    _ = 0^2 - 2*(2) := by rw [h1,h2]
+    _ = -4 := by ring
+  done
+  
