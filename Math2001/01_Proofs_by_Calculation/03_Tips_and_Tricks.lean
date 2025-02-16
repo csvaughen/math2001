@@ -168,8 +168,14 @@ example {p : ℝ} (h1 : 5 * p - 3 = 3 * p + 1) : p = 2 :=
 example {x y : ℤ} (h1 : 2 * x + y = 4) (h2 : x + y = 1) : x = 3 :=
   sorry
 
-example {a b : ℝ} (h1 : a + 2 * b = 4) (h2 : a - b = 1) : a = 2 :=
-  sorry
+example {a b : ℝ} (h1 : a + 2 * b = 4) (h2 : a - b = 1) : a = 2 := by
+  calc
+    a = (1/3)*((a+2*b) + 2*(a-b)) := by ring
+    _ = (1/3)*(4 + 2*1) := by rw[h1,h2]
+    _ = 2 := by ring
+  done
+  
+
 
 example {u v : ℝ} (h1 : u + 1 = v) : u ^ 2 + 3 * u + 1 = v ^ 2 + v - 1 := by
   calc
@@ -197,4 +203,3 @@ example {p q r : ℚ} (h1 : p + q + r = 0) (h2 : p * q + p * r + q * r = 2) :
     _ = 0^2 - 2*(2) := by rw [h1,h2]
     _ = -4 := by ring
   done
-  
