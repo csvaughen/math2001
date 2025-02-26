@@ -150,10 +150,25 @@ example {a b : ℚ} (h1 : 3 ≤ a) (h2 : a + 2 * b ≥ 4) : a + b ≥ 3 :=
 
 
 example {x : ℤ} (hx : x ≥ 9) : x ^ 3 - 8 * x ^ 2 + 2 * x ≥ 3 :=
-  sorry
+  calc
+    x^3 - 8*x^2 + 2 * x
+    = x*(x^2 - 8*x + 2) := by ring
+    _ = x*( (x * (x-8) +2 ) ) := by ring
+    _ ≥ 9*( (9 *(9-8) + 2 ) ) := by rel[hx]
+    _ = 9*11 := by numbers
+    _ = 99 := by numbers
+    _ ≥ 3 := by numbers
+
+
 
 example {n : ℤ} (hn : n ≥ 10) : n ^ 4 - 2 * n ^ 2 > 3 * n ^ 3 :=
-  sorry
+  calc
+    n^4 - 2*n^2
+    = n*(n^3-2*n) := by ring
+    _ ≥ 10*(n^3 - 2*n) := by rel[hn]
+    _ = 10 * (n*(n^2-2)) := by ring
+    ... ?#%$%
+
 
 example {n : ℤ} (h1 : n ≥ 5) : n ^ 2 - 2 * n + 3 > 14 :=
   sorry
