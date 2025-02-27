@@ -161,14 +161,14 @@ example {x : ℤ} (hx : x ≥ 9) : x ^ 3 - 8 * x ^ 2 + 2 * x ≥ 3 :=
 
 
 
+/- still stuck on this one!!
 example {n : ℤ} (hn : n ≥ 10) : n ^ 4 - 2 * n ^ 2 > 3 * n ^ 3 :=
- sorry
-  /- calc
-    n^4 - 2*n^2 = n*n^3 - 2*n^2 := by ring
-    _ ≥ 10*n^3 - 2*n^2 := by rel[hn]
-    _ = 10*n^3 - 2*n*n := by ring
-    _ ≥ 10*n^3 - n*n*n := by sorry
- -/
+  calc
+    n^4 - 2*n^2 = n*n^3 - 2*n*n := by ring
+    _ ≥ 10*n^3 - 2*n*n := by rel[hn]
+-- ???????
+-/
+
 
 example {n : ℤ} (h1 : n ≥ 5) : n ^ 2 - 2 * n + 3 > 14 :=
   calc
