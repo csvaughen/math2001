@@ -162,19 +162,34 @@ example {x : ℤ} (hx : x ≥ 9) : x ^ 3 - 8 * x ^ 2 + 2 * x ≥ 3 :=
 
 
 example {n : ℤ} (hn : n ≥ 10) : n ^ 4 - 2 * n ^ 2 > 3 * n ^ 3 :=
-  calc
-    n^4 - 2*n^2
-    = n*(n^3-2*n) := by ring
-    _ ≥ 10*(n^3 - 2*n) := by rel[hn]
-    _ = 10 * (n*(n^2-2)) := by ring
-    ... ?#%$%
-
+ sorry
+  /- calc
+    n^4 - 2*n^2 = n*n^3 - 2*n^2 := by ring
+    _ ≥ 10*n^3 - 2*n^2 := by rel[hn]
+    _ = 10*n^3 - 2*n*n := by ring
+    _ ≥ 10*n^3 - n*n*n := by sorry
+ -/
 
 example {n : ℤ} (h1 : n ≥ 5) : n ^ 2 - 2 * n + 3 > 14 :=
-  sorry
+  calc
+     n^2 - 2*n  + 3
+   _ > n^2 - 2*n := by extra
+   _ = n*(n-2) := by ring
+   _ ≥ 5*(5-2) := by rel[h1]
+   _ = 5*3 := by ring
+   _ = 15 := by numbers
+   _ > 14 := by numbers
+
 
 example {x : ℚ} : x ^ 2 - 2 * x ≥ -1 :=
-  sorry
+  calc
+    x^2 - 2*x = x^2 - 2*x + 1 - 1 := by ring
+    _ = (x-1)^2 - 1 := by ring
+    _ ≥ -1 := by extra
+
 
 example (a b : ℝ) : a ^ 2 + b ^ 2 ≥ 2 * a * b :=
-  sorry
+  calc
+    a^2 + b^2 = a^2 + b^2 -2*a*b + 2*a*b := by ring
+    _ = (a - b)^2 + 2*a*b := by ring
+    _ ≥ 2*a*b := by extra
