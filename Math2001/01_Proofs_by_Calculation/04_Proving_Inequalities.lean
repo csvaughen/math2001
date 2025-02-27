@@ -162,8 +162,14 @@ example {x : ℤ} (hx : x ≥ 9) : x ^ 3 - 8 * x ^ 2 + 2 * x ≥ 3 :=
 
 
 example {n : ℤ} (hn : n ≥ 10) : n ^ 4 - 2 * n ^ 2 > 3 * n ^ 3 :=
-  sorry
-
+  calc
+    n^4 - 2*n^2 = n^4 - 2*n^2 + 3*n^3 - 3*n^3 := by ring
+    _ = n^2*(n^2 - 2 - 3*n) + 3*n^3 := by ring
+    _ = n^2*(n^2 - 3*n - 2) + 3*n^3 := by ring
+    _ = n^2*((n+7)*(n-10)+ 68) + 3*n^3 := by ring
+    _ ≥ 10^2*((10+7)*(10-10)+68) + 3*n^3 := by rel[hn]
+    _ = 100*(68) + 3*n^3 := by ring
+    _ > 3*n^3 := by extra
 
 
 example {n : ℤ} (h1 : n ≥ 5) : n ^ 2 - 2 * n + 3 > 14 :=
