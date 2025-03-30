@@ -22,4 +22,17 @@ example {m n : ℝ} (h1 : m ≤ 8 - n) : 10 > m + n := by addarith [h1]
 
 
 -- Check that `addarith` can't verify this deduction!
-example {w : ℚ} (h1 : 3 * w + 1 = 4) : w = 1 := sorry
+example {w : ℚ} (h1 : 3 * w + 1 = 4) : w = 1 := addarith[h1]
+
+/- so what do we do instead?
+we did this one previously, in section 3 (tips and tricks)
+ -/
+
+-- Example 1.3.4
+example {w : ℚ} (h1 : 3 * w + 1 = 4) : w = 1 :=
+calc
+  w = (1/3)*(3*w + 1) - (1/3) := by ring
+  _ = (1/3)*4 - 1/3 := by rw[h1]
+  _ = 4/3 - 1/3 := by ring
+  _ = 1 := by ring
+
