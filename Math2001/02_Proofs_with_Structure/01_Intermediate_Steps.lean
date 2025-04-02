@@ -39,7 +39,7 @@ example {t : ℝ} (h1 : t ^ 2 = 3 * t) (h2 : t ≥ 1) : t ≥ 2 := by
 
 
 example {a b : ℝ} (h1 : a ^ 2 = b ^ 2 + 1) (h2 : a ≥ 0) : a ≥ 1 := by
-  have h3 :=
+  have h3 : a^2 ≥ 1^2
   calc
     a ^ 2 = b ^ 2 + 1 := by rw [h1]
     _ ≥ 1 := by extra
@@ -48,13 +48,32 @@ example {a b : ℝ} (h1 : a ^ 2 = b ^ 2 + 1) (h2 : a ≥ 0) : a ≥ 1 := by
 
 
 example {x y : ℤ} (hx : x + 3 ≤ 2) (hy : y + 2 * x ≥ 3) : y > 3 := by
-  sorry
+  have h1 : x ≤ -1 := by addarith[hx]
+  have h2 : y ≥ 3 - 2*x := by addarith[hy]
+  calc
+    y ≥ 3 - 2*x := by rel[h2]
+    _ ≥ 3 - 2*(-1) := by rel[h1]
+    _ = 3 + 2 := by ring
+    _ > 3 := by numbers
+
+
 
 example (a b : ℝ) (h1 : -b ≤ a) (h2 : a ≤ b) : a ^ 2 ≤ b ^ 2 := by
-  sorry
+  have h1: 0 ≤ b + a := by addarith [h1]
+  have h2: 0 ≤ b - a := by addarith [h2]
+  calc
+    a^2 ≤ a^2 + (b+a)*(b-a) := by extra
+    _ = b^2 := by ring
+
+
 
 example (a b : ℝ) (h : a ≤ b) : a ^ 3 ≤ b ^ 3 := by
-  sorry
+  have h1: 0 ≤ b-a := by addarith[h]
+  calc
+    a^3 ≤ a^3 + (b-a)*((b-a)^2+3*(b+a)^2)/4 := by extra
+    _ = b^3 := by ring
+
+    
 
 /-! # Exercises -/
 
