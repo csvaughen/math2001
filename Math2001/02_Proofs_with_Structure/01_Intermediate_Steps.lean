@@ -73,13 +73,16 @@ example (a b : ℝ) (h : a ≤ b) : a ^ 3 ≤ b ^ 3 := by
     a^3 ≤ a^3 + (b-a)*((b-a)^2+3*(b+a)^2)/4 := by extra
     _ = b^3 := by ring
 
-    
+
 
 /-! # Exercises -/
 
 
 example {x : ℚ} (h1 : x ^ 2 = 4) (h2 : 1 < x) : x = 2 := by
-  sorry
+  have h3 : x^2 - 4 = 0 := by addarith [h1]
+  have h4 : x^2 - 4 = (x - 2) * (x + 2) := by ring
+
+
 
 example {n : ℤ} (hn : n ^ 2 + 4 = 4 * n) : n = 2 := by
   sorry
