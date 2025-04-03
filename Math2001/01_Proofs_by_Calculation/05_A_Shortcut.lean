@@ -22,9 +22,9 @@ example {m n : ℝ} (h1 : m ≤ 8 - n) : 10 > m + n := by addarith [h1]
 
 
 -- Check that `addarith` can't verify this deduction!
-/- example {w : ℚ} (h1 : 3 * w + 1 = 4) : w = 1 := addarith[h1]
+-- example {w : ℚ} (h1 : 3 * w + 1 = 4) : w = 1 := addarith[h1]
 
-addarith gives an error in line above
+/-addarith gives an error in line above
 
 the lesson here is that "addarith" works only
 when adding positive negative terms on both sides of a
@@ -33,7 +33,8 @@ linear inequality or equality
 so what could we do instead with the example above?
 we did this one previously, in section 3 (tips and tricks)
 and that is copied below
- -/
+
+-/
 
 -- Example 1.3.4
 example {w : ℚ} (h1 : 3 * w + 1 = 4) : w = 1 :=
