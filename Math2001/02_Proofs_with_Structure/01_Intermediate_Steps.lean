@@ -48,12 +48,12 @@ example {a b : ℝ} (h1 : a ^ 2 = b ^ 2 + 1) (h2 : a ≥ 0) : a ≥ 1 := by
 
 
 example {x y : ℤ} (hx : x + 3 ≤ 2) (hy : y + 2 * x ≥ 3) : y > 3 := by
-  have h1 : x ≤ -1 := by addarith[hx]
+  have h1 : -x ≥ 1 := by addarith[hx]
   have h2 : y ≥ 3 - 2*x := by addarith[hy]
   calc
     y ≥ 3 - 2*x := by rel[h2]
-    _ ≥ 3 - 2*(-1) := by rel[h1]
-    _ = 3 + 2 := by ring
+    _ = 3 + 2*(-x) := by ring
+    _ ≥ 3 + 2*(1) := by rel[h1]
     _ > 3 := by numbers
 
 
