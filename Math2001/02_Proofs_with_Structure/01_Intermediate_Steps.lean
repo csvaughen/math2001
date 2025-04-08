@@ -71,7 +71,7 @@ example (a b : ℝ) (h : a ≤ b) : a ^ 3 ≤ b ^ 3 := by
     a^3 ≤ a^3 + (b-a)*((b-a)^2+3*(b+a)^2)/4 := by extra
     _ = b^3 := by ring
 
-
+--updated 4/8
 
 /-! # Exercises -/
 
@@ -82,7 +82,7 @@ example {x : ℚ} (h1 : x ^ 2 = 4) (h2 : 1 < x) : x = 2 := by
         = x ^ 2 + 2 * x := by ring
       _ = 4 + 2 * x := by rw [h1]
       _ = 2 * (x + 2) := by ring
-  cancel (x + 2) at h3 -- we can stop here because h3 become x = 2 after canceling
+  cancel (x + 2) at h3 -- we can stop here because h3 becomes x = 2 after canceling
 
 
 example {n : ℤ} (hn : n ^ 2 + 4 = 4 * n) : n = 2 := by
