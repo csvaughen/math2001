@@ -138,7 +138,12 @@ example {x y : ℝ} (h1 : x = 3) (h2 : y = 4 * x - 3) : y = 9 :=
 
 
 example {a b : ℤ} (h : a - b = 0) : a = b :=
-  sorry
+  calc
+   a = a - 0 := by ring
+   _ = a - (a-b) := by rw[h]
+   _ = a - a + b := by ring
+   _ = b := by ring
+   
 
 example {x y : ℤ} (h1 : x - 3 * y = 5) (h2 : y = 3) : x = 14 :=
   sorry
@@ -174,7 +179,7 @@ example {a b : ℝ} (h1 : a + 2 * b = 4) (h2 : a - b = 1) : a = 2 := by
     _ = (1/3)*(4 + 2*1) := by rw[h1,h2]
     _ = 2 := by ring
   done
-  
+
 
 
 example {u v : ℝ} (h1 : u + 1 = v) : u ^ 2 + 3 * u + 1 = v ^ 2 + v - 1 := by
