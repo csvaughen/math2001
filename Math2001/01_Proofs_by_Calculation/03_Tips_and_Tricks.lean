@@ -59,6 +59,19 @@ example {a b : ℝ} (h1 : a - 5 * b = 4) (h2 : b + 2 = 3) : a = 9 :=
     _ = 4 + 5 * (3 - 2) := by rw[h2]
     _ = 9 := by ring
 
+/- we could use "have" which is introduced in section 2.1 to solve for b first -/
+
+example {a b : ℝ} (h1 : a - 5 * b = 4) (h2 : b + 2 = 3) : a = 9 :=
+  have hb : b = 1 :=
+    calc
+      b = (b + 2) - 2 := by ring
+      _ = 3 - 2 := by rw[h2]
+      _ = 1 := by ring
+    calc
+      a = (a - 5 * b) + 5 * b := by ring
+      _ = 4 + 5 * 1 := by rw[h1, hb]
+      _ = 9 := by ring
+
 
 -- Example 1.3.4
 example {w : ℚ} (h1 : 3 * w + 1 = 4) : w = 1 :=
@@ -143,7 +156,7 @@ example {a b : ℤ} (h : a - b = 0) : a = b :=
    _ = a - (a-b) := by rw[h]
    _ = a - a + b := by ring
    _ = b := by ring
-   
+
 
 example {x y : ℤ} (h1 : x - 3 * y = 5) (h2 : y = 3) : x = 14 :=
   sorry
